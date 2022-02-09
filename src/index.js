@@ -34,7 +34,8 @@ function checksExistsUserAccount(request, response, next) {
 }
 
 function checksCreateTodosUserAvailability(request, response, next) {
-  const user = request.body;
+  //Problem
+  const { user } = request;
 
   const userIsValid = validateUserByName(user.username);
 
@@ -54,6 +55,7 @@ function checksCreateTodosUserAvailability(request, response, next) {
 }
 
 function checksTodoExists(request, response, next) {
+  //Problem
   const { username } = request.headers;
   const { id } = request.params;
 
