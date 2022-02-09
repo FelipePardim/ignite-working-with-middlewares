@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 
-const { v4: uuidv4, validate } = require('uuid');
+const { v4: uuidv4, validate: validate } = require('uuid');
 
 const app = express();
 app.use(express.json());
@@ -34,7 +34,6 @@ function checksExistsUserAccount(request, response, next) {
 }
 
 function checksCreateTodosUserAvailability(request, response, next) {
-  //Problem
   const { user } = request;
 
   const userIsValid = validateUserByName(user.username);
@@ -55,7 +54,6 @@ function checksCreateTodosUserAvailability(request, response, next) {
 }
 
 function checksTodoExists(request, response, next) {
-  //Problem
   const { username } = request.headers;
   const { id } = request.params;
 
@@ -65,14 +63,14 @@ function checksTodoExists(request, response, next) {
     return response.status(404).json({error: "User not found."});
   }
 
-  if (uuidv4.validate(id) === false) {
+  if (validate(id) === false) {
     return response.status(400).json({error: "Todo id not valid."});
   }
 
   const todoFromUser = user.todos.find((todo) => todo.id == id);
 
   if (!todoFromUser) {
-    return response.status(400).json({error: "This todo do not belong to the user."});
+    return response.status(404).json({error: "This todo do not belong to the user."});
   }
 
   request.user = user;
