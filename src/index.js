@@ -36,15 +36,9 @@ function checksExistsUserAccount(request, response, next) {
 function checksCreateTodosUserAvailability(request, response, next) {
   const { user } = request;
 
-  const userIsValid = validateUserByUsername(user.username);
-
-  if (!userIsValid) {
-    return response.status(403).json({error: "User not found."});
-  }
-
-  if ((user.pro === false) && (user.todos.length < 10)) {
+  if (user.pro === true) {
     return next();
-  } else if (user.pro === true) {
+  } else if (user.todos.length < 10) {
     return next();
   } else {
     return response.status(403).json({error: "You reached the free plan limit"});
