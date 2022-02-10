@@ -9,7 +9,7 @@ app.use(cors());
 
 const users = [];
 
-function validateUserByName(username) {
+function validateUserByUsername(username) {
   const user = users.find((user) => user.username === username);
 
   if (!user){
@@ -22,7 +22,7 @@ function validateUserByName(username) {
 function checksExistsUserAccount(request, response, next) {
   const { username } = request.headers;
 
-  const user = validateUserByName(username);
+  const user = validateUserByUsername(username);
 
   if(!user) {
     response.status(404).json({error: "User not found."});
@@ -36,17 +36,15 @@ function checksExistsUserAccount(request, response, next) {
 function checksCreateTodosUserAvailability(request, response, next) {
   const { user } = request;
 
-  const userIsValid = validateUserByName(user.username);
+  const userIsValid = validateUserByUsername(user.username);
 
-  if (userIsValid) {
-    return response.status(404).json({error: "User not found."});
+  if (!userIsValid) {
+    return response.status(403).json({error: "User not found."});
   }
 
-  if (user.pro === true) {
-    request.user = user;
+  if ((user.pro === false) && (user.todos.length < 10)) {
     return next();
-  } else if (user.todos.length < 10) {
-    request.user = user;
+  } else if (user.pro === true) {
     return next();
   } else {
     return response.status(403).json({error: "You reached the free plan limit"});
@@ -57,7 +55,7 @@ function checksTodoExists(request, response, next) {
   const { username } = request.headers;
   const { id } = request.params;
 
-  const user = validateUserByName(username);
+  const user = validateUserByUsername(username);
 
   if (!user){
     return response.status(404).json({error: "User not found."});
