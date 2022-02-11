@@ -2,7 +2,7 @@
     Ignite - Working with middlewares
 </h1>
 
-## An API developed during Ignite course .
+## An API developed during Ignite course.
 
 <p align="center">
 	<img src="https://img.shields.io/github/stars/FelipePardim/ignite-working-with-middlewares" />
@@ -28,7 +28,7 @@
 
 
 ## About
-#### This project is a simple financial API and was developed during Ignite course 👨🏽‍🚀 by RocketSeat 🚀💺💜.
+#### This project is a simple ToDo API and was developed during Ignite course 👨🏽‍🚀 by RocketSeat 🚀💺💜.
 
 ---
 
@@ -36,30 +36,27 @@
 
 To run this project, please install this:
 
-<!-- Nome da ferramenta e link para a sua documentação ou site -->
 - [NodeJS](https://nodejs.org/en/).
 
 ---
 
-<!-- Explicação da instação ou uso -->
 ## Installation
 > ### Clone the repo.
 >>   ```bash
 >>  # Clone this repository
 >>  $ git clone https://github.com/FelipePardim/ignite-working-with-middlewares
 >>   ```
-> ### Follow the guides bellow to run each project as you like.
+> ### Follow these steps to run the project.
 
 ---
 
-<!-- Explicação da instação ou uso -->
 ## How to use
 ><h3 id="running-server">
 >   🖥️ Running backend (server).
 ></h3>
 >
 >> ```bash
->># Access back-end folder.
+>># Access the api folder.
 >> $ cd ignite-working-with-middlewares
 >>
 >># Install dependencies.
